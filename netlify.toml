@@ -4,3 +4,16 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  BASE_PATH = "/"
+
+# Handle SPA routing - redirect all routes to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Handle 404s
+[[redirects]]
+  from = "/404"
+  to = "/index.html"
+  status = 404

@@ -1,28 +1,13 @@
 {
-  "name": "book-finder",
+  "name": "book-finder-sandbox",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
-  "homepage": "https://your-username.github.io/Book-Finder",
-  "author": "Vasu",
-  "description": "A modern React application for discovering and searching books using the Open Library database",
   "scripts": {
-    "dev": "vite",
-    "start": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "build:github": "BASE_PATH=/Book-Finder/ vite build",
-    "build:netlify": "BASE_PATH=/ vite build",
-    "build:sandbox": "vite build --mode sandbox",
-    "preview": "vite preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "type-check": "tsc --noEmit",
-    "deploy": "node scripts/deploy.js",
-    "deploy:github": "node scripts/deploy.js github",
-    "deploy:netlify": "node scripts/deploy.js netlify",
-    "deploy:vercel": "node scripts/deploy.js vercel",
-    "setup:sandbox": "node scripts/setup-sandbox.js"
+    "dev": "vite --config vite.sandbox.config.ts",
+    "start": "vite --config vite.sandbox.config.ts",
+    "build": "vite build --config vite.sandbox.config.ts",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -76,21 +61,14 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
-    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.16.5",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",
     "autoprefixer": "^10.4.21",
-    "eslint": "^9.32.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^15.15.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.38.0",
-    "vite": "^7.1.4"
+    "vite": "^7.1.3"
   }
 }
