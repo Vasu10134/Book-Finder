@@ -70,7 +70,7 @@ A lightning-fast React application that helps you discover and search through mi
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/Book-Finder.git
+   git clone https://github.com/Vasu10134/Book-Finder.git
    cd Book-Finder
    ```
 
@@ -112,48 +112,6 @@ A lightning-fast React application that helps you discover and search through mi
 - **Empty states** with helpful guidance
 - **Responsive design** for all screen sizes
 
-## 🏗️ Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Fix ESLint issues |
-| `npm run type-check` | Run TypeScript type checking |
-
-### **Deployment Scripts**
-| Command | Description |
-|---------|-------------|
-| `npm run build:github` | Build for GitHub Pages |
-| `npm run build:netlify` | Build for Netlify |
-| `npm run deploy:github` | Deploy to GitHub Pages |
-| `npm run deploy:netlify` | Deploy to Netlify |
-
-## 🌐 Deployment
-
-### **GitHub Pages**
-```bash
-npm run deploy:github
-```
-
-### **Netlify**
-```bash
-npm run deploy:netlify
-```
-
-### **Vercel**
-```bash
-npm run deploy:vercel
-```
-
-### **Manual Deployment**
-```bash
-npm run build
-# Upload dist/ folder to your hosting service
-```
-
 ## 📁 Project Structure
 
 ```
@@ -182,18 +140,6 @@ Book-Finder/
 ├── netlify.toml            # Netlify configuration
 └── vite.config.ts          # Vite configuration
 ```
-
-## 🎨 Customization
-
-### **Styling**
-- **Colors**: Edit `tailwind.config.ts`
-- **Components**: Modify components in `src/components/ui/`
-- **Global styles**: Edit `src/index.css`
-
-### **Configuration**
-- **Base path**: Set `BASE_PATH` environment variable
-- **API endpoint**: Modify in `src/hooks/useBookSearch.ts`
-- **Build settings**: Update `vite.config.ts`
 
 ## 🔧 Development
 
@@ -269,8 +215,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **Vasu** - The creator and maintainer of Book Finder
 
-- **GitHub**: [@vasu](https://github.com/vasu)
-- **Project**: [Book Finder](https://github.com/your-username/Book-Finder)
+- **GitHub**: [@vasu](https://github.com/Vasu10134)
+- **Project**: [Book Finder](https://github.com/Vasu10134/Book-Finder)
 
 ---
 
@@ -278,8 +224,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 **Made with ❤️ by Vasu**
 
-[![GitHub stars](https://img.shields.io/github/stars/your-username/Book-Finder?style=social)](https://github.com/your-username/Book-Finder)
-[![GitHub forks](https://img.shields.io/github/forks/your-username/Book-Finder?style=social)](https://github.com/your-username/Book-Finder)
+[![GitHub stars](https://img.shields.io/github/stars/Vasu10134/Book-Finder?style=social)](https://github.com/Vasu10134/Book-Finder)
+[![GitHub forks](https://img.shields.io/github/forks/Vasu10134/Book-Finder?style=social)](https://github.com/Vasu10134/Book-Finder)
 
 *If you find this project helpful, please give it a ⭐️*
 
