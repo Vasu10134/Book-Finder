@@ -1,57 +1,26 @@
-import { useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import BookList from "@/components/BookList";
 import Loader from "@/components/Loader";
 import ErrorMessage from "@/components/ErrorMessage";
 import EmptyState from "@/components/EmptyState";
-
-interface Book {
-  key: string;
-  title: string;
-  author_name?: string[];
-  first_publish_year?: number;
-  cover_i?: number;
-}
+import { useBookSearch } from "@/hooks/useBookSearch";
 
 const Index = () => {
-  const [books, setBooks] = useState<Book[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [hasSearched, setHasSearched] = useState(false);
+  const {
+    books,
+    isLoading,
+    error,
+    hasSearched,
+    totalResults,
+    hasMorePages,
+    searchBooks,
+    loadMoreBooks,
+    clearSearch,
+    retrySearch,
+  } = useBookSearch();
 
-  const handleSearch = async (query: string) => {
-    setIsLoading(true);
-    setError(null);
-    setHasSearched(true);
-
-    try {
-      const response = await fetch(
-        `https://openlibrary.org/search.json?title=${encodeURIComponent(query)}&limit=20`
-      );
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch books');
-      }
-
-      const data = await response.json();
-      setBooks(data.docs || []);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong while searching for books.');
-      setBooks([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleClear = () => {
-    setBooks([]);
-    setError(null);
-    setHasSearched(false);
-  };
-
-  const handleRetry = () => {
-    setError(null);
-    // You could store the last query and retry it here
+  const handleSearch = (query: string) => {
+    searchBooks(query, 1, false);
   };
 
   return (
@@ -70,9 +39,10 @@ const Index = () => {
 
           <SearchBar
             onSearch={handleSearch}
-            onClear={handleClear}
+            onClear={clearSearch}
             isLoading={isLoading}
             hasResults={books.length > 0 || hasSearched}
+            resetInput={!hasSearched}
           />
         </div>
       </header>
@@ -82,7 +52,7 @@ const Index = () => {
         {isLoading && <Loader />}
         
         {error && (
-          <ErrorMessage message={error} onRetry={handleRetry} />
+          <ErrorMessage message={error} onRetry={retrySearch} />
         )}
         
         {!isLoading && !error && hasSearched && books.length === 0 && (
@@ -90,7 +60,13 @@ const Index = () => {
         )}
         
         {!isLoading && !error && books.length > 0 && (
-          <BookList books={books} />
+          <BookList 
+            books={books}
+            onLoadMore={loadMoreBooks}
+            isLoading={isLoading}
+            hasMorePages={hasMorePages}
+            totalResults={totalResults}
+          />
         )}
         
         {!hasSearched && !isLoading && (

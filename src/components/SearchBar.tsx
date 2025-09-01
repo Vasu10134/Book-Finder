@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, X } from "lucide-react";
@@ -8,10 +8,18 @@ interface SearchBarProps {
   onClear: () => void;
   isLoading?: boolean;
   hasResults?: boolean;
+  resetInput?: boolean;
 }
 
-const SearchBar = ({ onSearch, onClear, isLoading, hasResults }: SearchBarProps) => {
+const SearchBar = ({ onSearch, onClear, isLoading, hasResults, resetInput }: SearchBarProps) => {
   const [query, setQuery] = useState("");
+
+  // Reset input when resetInput prop changes (new search)
+  useEffect(() => {
+    if (resetInput) {
+      setQuery("");
+    }
+  }, [resetInput]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,6 +33,10 @@ const SearchBar = ({ onSearch, onClear, isLoading, hasResults }: SearchBarProps)
     onClear();
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="flex gap-3">
@@ -34,7 +46,7 @@ const SearchBar = ({ onSearch, onClear, isLoading, hasResults }: SearchBarProps)
             type="text"
             placeholder="Search for books by title..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={handleInputChange}
             className="pl-10 h-12 bg-card border-border focus:ring-book-primary focus:border-book-primary"
             disabled={isLoading}
           />

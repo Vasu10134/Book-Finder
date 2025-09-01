@@ -1,18 +1,22 @@
 import BookCard from "./BookCard";
-
-interface Book {
-  key: string;
-  title: string;
-  author_name?: string[];
-  first_publish_year?: number;
-  cover_i?: number;
-}
+import LoadMoreButton from "./LoadMoreButton";
+import { Book } from "@/types/book";
 
 interface BookListProps {
   books: Book[];
+  onLoadMore: () => void;
+  isLoading: boolean;
+  hasMorePages: boolean;
+  totalResults: number;
 }
 
-const BookList = ({ books }: BookListProps) => {
+const BookList = ({ 
+  books, 
+  onLoadMore, 
+  isLoading, 
+  hasMorePages, 
+  totalResults 
+}: BookListProps) => {
   if (books.length === 0) {
     return null;
   }
@@ -21,7 +25,7 @@ const BookList = ({ books }: BookListProps) => {
     <div className="w-full">
       <div className="mb-6">
         <p className="text-muted-foreground">
-          Found {books.length} {books.length === 1 ? 'book' : 'books'}
+          Found {totalResults} {totalResults === 1 ? 'book' : 'books'}
         </p>
       </div>
       
@@ -37,6 +41,14 @@ const BookList = ({ books }: BookListProps) => {
           </div>
         ))}
       </div>
+
+      <LoadMoreButton
+        onLoadMore={onLoadMore}
+        isLoading={isLoading}
+        hasMorePages={hasMorePages}
+        totalResults={totalResults}
+        currentCount={books.length}
+      />
     </div>
   );
 };
